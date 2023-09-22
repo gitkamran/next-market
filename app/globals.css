@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: iranYekan;
+  src: url(/assets/fonts/IRANYekanXFaNum-Regular.woff2);
+  font-weight: 400;
+  font-display: block;
+}
+
+@layer base {
+  html {
+      font-family: 'iranYekan';
+  }
+}
