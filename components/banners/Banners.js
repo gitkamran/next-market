@@ -20,14 +20,14 @@ const Banners = ({ data }) => {
                     <h2>Not Found...</h2> :
                     <div className='flex items-center justify-between gap-4 w-full'>
                         {fullData.map((d, i) => (
-                            <Link key={i} href={d.url} target='_blank' className='w-full h-auto'>
+                            <Link key={i} href={d.url} target='_blank' className='w-full h-auto rounded-md'>
                                 <Image
                                     src={d.image}
                                     alt={d.title}
                                     width={800}
                                     height={200}
                                     priority
-                                    className="w-full h-auto"
+                                    className="w-full h-auto rounded-md"
                                 />
                             </Link>
                         ))}

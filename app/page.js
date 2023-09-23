@@ -4,12 +4,12 @@ import CategoriesSlider from "@/components/categories-slider/CategoriesSlider";
 import Newest from "@/components/newest-products/Newest";
 
 const getDataMenu = async () => {
-  const res = await fetch("https://api.qazvinmarket.com/api/v1/menu");
+  const res = await fetch("https://api.qazvinmarket.com/api/v1/menu", { cache: "no-store" });
   return res.json();
 }
 
 const getDataIndex = async () => {
-  const res = await fetch("https://api.qazvinmarket.com/api/v1/index");
+  const res = await fetch("https://api.qazvinmarket.com/api/v1/index", { cache: "no-store" });
   return res.json();
 }
 

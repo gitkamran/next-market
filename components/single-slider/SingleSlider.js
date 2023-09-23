@@ -4,6 +4,9 @@ import { HiMinusSmall, HiPlusSmall } from "react-icons/hi2";
 const SingleSlider = ({ data }) => {
     return (
         <div className="w-full h-full rounded-md shadow-[0_0_5px_#00000030] bg-neutral-100 flex flex-col items-center gap-2 p-2">
+            <div className="absolute top-5 left-1 bg-orange-500 rounded-md w-7 h-7 flex items-center justify-center">
+                <h2 className="text-white text-sm">%{Math.round(data.saleOff)}</h2>
+            </div>
             <div className="w-full h-auto bg-white flex items-center justify-center rounded-md">
                 <Image
                     src={data.image}
