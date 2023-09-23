@@ -4,7 +4,7 @@ import React from 'react'
 
 const Logo = () => {
   return (
-    <Link href={'/'} className='w-[180px] h-auto'>
+    <Link href={'/'} className='w-[240px] h-auto'>
         <Image 
             src="/assets/images/logo/next-market-logo.svg"
             alt='فروشگاه آنلاین Next'

@@ -13,19 +13,19 @@ const Navbar = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href='/' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
+                    <Link href='/terms-of-use' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
                         <HiOutlineScale className='text-lg' />
                         <span className='text-sm'>قوانین و مقررات</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
+                    <Link href='/about-us' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
                         <HiOutlineInformationCircle className='text-lg' />
                         <span className='text-sm'>درباره ما</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
+                    <Link href='/contact-us' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
                         <HiOutlinePhone className='text-lg' />
                         <span className='text-sm'>تماس با ما</span>
                     </Link>
