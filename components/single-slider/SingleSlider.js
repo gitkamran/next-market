@@ -7,7 +7,7 @@ const SingleSlider = ({ data }) => {
         <div className="w-full h-full rounded-md shadow-[0_0_5px_#00000030] bg-neutral-100 flex flex-col items-center gap-2 p-2">
             {
                 data.saleOff !== 0 &&
-                <div className="absolute top-5 left-1 bg-orange-500 rounded-full w-7 h-7 flex items-center justify-center">
+                <div className="absolute top-5 left-1 bg-orange-500/90 rounded-full w-7 h-7 flex items-center justify-center">
                     <h2 className="text-white text-sm">%{Math.round(data.saleOff)}</h2>
                 </div>
             }
@@ -31,11 +31,11 @@ const SingleSlider = ({ data }) => {
                 <h2 className="text-center text-green-600 text-sm">{priceType(data.main_price)} تومان</h2>
             </div>
             <div className="flex items-center gap-2">
-                <button className="bg-rose-500 rounded-md text-white text-xl p-1">
+                <button className="bg-rose-500/90 rounded-md text-white text-xl p-1">
                     <HiPlusSmall />
                 </button>
                 <span>0</span>
-                <button className="bg-rose-500 rounded-md text-white text-xl p-1">
+                <button className="bg-rose-500/90 rounded-md text-white text-xl p-1">
                     <HiMinusSmall />
                 </button>
             </div>

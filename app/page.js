@@ -3,6 +3,7 @@ import Banners from "@/components/banners/Banners";
 import CategoriesSlider from "@/components/categories-slider/CategoriesSlider";
 import CommentsSlider from "@/components/comments-slider/CommentsSlider";
 import Newest from "@/components/newest-products/Newest";
+import "@/components/custom.css"
 
 const getDataMenu = async () => {
   const res = await fetch("https://api.qazvinmarket.com/api/v1/menu", { cache: "no-store" });
