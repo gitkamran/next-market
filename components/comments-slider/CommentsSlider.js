@@ -1,24 +1,29 @@
 "use client"
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/navigation";
 import "./cetegories-slider.css";
 import SlideNavButton from "./SlideNavButton";
-
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
-const CategoriesSlider = ({ data }) => {
+import { HiOutlineChatBubbleLeftRight } from "react-icons/hi2";
+
+const CommentsSlider = ({ data }) => {
     const [fullData, setFullData] = useState([-1])
     useEffect(() => {
         setFullData(data)
     }, [data])
     return (
-        <section className="relative w-full mx-auto lg:max-w-screen-lg p-4 bg-white shadow-md rounded-md">
-            <div className="px-10">
+        <section className="w-full mx-auto lg:max-w-screen-lg p-4 bg-white shadow-md rounded-md">
+            <div className="flex items-center gap-2 p-4">
+                <HiOutlineChatBubbleLeftRight className="text-3xl text-neutral-500" />
+                <h2 className="text-neutral-500 text-lg font-bold">نظرات کاربران</h2>
+            </div>
+            <div className="px-10 relative">
                 {
                     fullData[0] === -1 ?
                         <div className="py-4">
-                            <div className="w-full h-[120px] xl:h-[140px] rounded-md bg-neutral-400 animate-pulse">
+                            <div className="w-full h-[148px] rounded-md bg-neutral-400 animate-pulse">
                             </div>
                         </div>
                         :
@@ -29,34 +34,28 @@ const CategoriesSlider = ({ data }) => {
                                 className="swiper"
                                 breakpoints={{
                                     300: {
-                                        slidesPerView: 4
+                                        slidesPerView: 1
                                     },
                                     600: {
-                                        slidesPerView: 6
+                                        slidesPerView: 2
                                     },
                                     1024: {
-                                        slidesPerView: 7
+                                        slidesPerView: 3
                                     },
                                     1280: {
-                                        slidesPerView: 8
+                                        slidesPerView: 3
                                     },
                                 }}
                             >
                                 {fullData.map((d, i) => (
                                     <SwiperSlide key={i}>
-                                        <div className="w-full rounded-md shadow-[0_0_15px_#00000030] flex flex-col items-center gap-2 px-1 py-2">
-                                            <div className="w-14 h-14">
-                                                <Image
-                                                    src={d.image}
-                                                    alt={d.name}
-                                                    width={80}
-                                                    height={80}
-                                                    priority
-                                                    className="w-auto h-auto"
-                                                />
-                                            </div>
-                                            <div className="flex items-center justify-center h-full">
-                                                <h2 className="text-center text-neutral-600 text-sm">{d.name}</h2>
+                                        <div className="shadow-[0_0_15px_#00000030] rounded-md p-4 w-full">
+                                            <div className="flex flex-col gap-4">
+                                                <div className="flex items-center justify-between">
+                                                    <h2 className="text-rose-500 text-sm">{d.username}</h2>
+                                                    <span className="text-xs text-neutral-500">{d.date}</span>
+                                                </div>
+                                                <p className="text-sm text-neutral-600">{d.comment}</p>
                                             </div>
                                         </div>
                                     </SwiperSlide>
@@ -69,4 +68,4 @@ const CategoriesSlider = ({ data }) => {
     )
 }
 
-export default CategoriesSlider
+export default CommentsSlider

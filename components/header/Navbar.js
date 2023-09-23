@@ -7,27 +7,27 @@ const Navbar = () => {
         <nav>
             <ul className='flex items-center gap-4'>
                 <li>
-                    <Link href='/' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
-                        <HiOutlineHome className='text-lg' />
-                        <span className='text-sm'>صفحه اصلی</span>
+                    <Link href='/' className='flex items-center gap-1 hover:shadow-md p-2 rounded-md duration-300'>
+                        <HiOutlineHome className='text-xl text-rose-500/90' />
+                        <span className='text-sm text-neutral-600'>صفحه اصلی</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/terms-of-use' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
-                        <HiOutlineScale className='text-lg' />
-                        <span className='text-sm'>قوانین و مقررات</span>
+                    <Link href='/terms-of-use' className='flex items-center gap-1 hover:shadow-md p-2 rounded-md duration-300'>
+                        <HiOutlineScale className='text-xl text-rose-500/90' />
+                        <span className='text-sm text-neutral-600'>قوانین و مقررات</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/about-us' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
-                        <HiOutlineInformationCircle className='text-lg' />
-                        <span className='text-sm'>درباره ما</span>
+                    <Link href='/about-us' className='flex items-center gap-1 hover:shadow-md p-2 rounded-md duration-300'>
+                        <HiOutlineInformationCircle className='text-xl text-rose-500/90' />
+                        <span className='text-sm text-neutral-600'>درباره ما</span>
                     </Link>
                 </li>
                 <li>
-                    <Link href='/contact-us' className='flex items-center gap-1 text-rose-500 hover:shadow-md p-2 rounded-md duration-300'>
-                        <HiOutlinePhone className='text-lg' />
-                        <span className='text-sm'>تماس با ما</span>
+                    <Link href='/contact-us' className='flex items-center gap-1 hover:shadow-md p-2 rounded-md duration-300'>
+                        <HiOutlinePhone className='text-xl text-rose-500/90' />
+                        <span className='text-sm text-neutral-600'>تماس با ما</span>
                     </Link>
                 </li>
             </ul>
