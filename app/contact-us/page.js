@@ -1,9 +1,9 @@
-import React from 'react'
+import ContactComp from "@/components/contact-us-comp/ContactComp"
+import data from "@/data/CONTACT_US_DATA.json"
 
 const Contact = () => {
     return (
-        <main className="flex flex-col gap-4 items-center w-full min-h-screen bg-neutral-200/50 py-4">
-        </main>
+        <ContactComp data={data} />
     )
 }
 

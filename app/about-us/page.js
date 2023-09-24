@@ -1,9 +1,9 @@
-import React from 'react'
+import AboutComp from "@/components/about-us-comp/AboutComp"
+import data from "@/data/ABOUT_US_DATA.json"
 
 const About = () => {
     return (
-        <main className="flex flex-col gap-4 items-center w-full min-h-screen bg-neutral-200/50 py-4">
-        </main>
+        <AboutComp data={data} />
     )
 }
 

@@ -1,0 +1,26 @@
+[
+    {
+        "id": "01",
+        "title": "گیتاب",
+        "desc": "github.com/gitkamran",
+        "icon": "HiOutlinePhone"
+    },
+    {
+        "id": "02",
+        "title": "اینستاگرام",
+        "desc": "instagram.com/mkamran.ir",
+        "icon": "HiOutlinePhone"
+    },
+    {
+        "id": "03",
+        "title": "شماره تلفن",
+        "desc": "09369139993",
+        "icon": "HiOutlinePhone"
+    },
+    {
+        "id": "04",
+        "title": "پست الکترونیک",
+        "desc": "mkamran.ir@gmail.com",
+        "icon": "HiOutlinePhone"
+    }
+]
