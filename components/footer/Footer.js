@@ -9,8 +9,8 @@ import GoToTop from './GoToTop'
 const Footer = () => {
     return (
         <footer className='bg-rose-500/90 w-full'>
-            <div className='mx-auto lg:max-w-screen-lg flex flex-col py-4 w-full'>
-                <div className='flex justify-between gap-4 py-4 w-full'>
+            <div className='mx-auto lg:max-w-screen-lg flex flex-col py-2 w-full'>
+                <div className='flex justify-between gap-4 py-8 w-full'>
                     <div className='flex flex-col gap-4'>
                         <Logo />
                     </div>

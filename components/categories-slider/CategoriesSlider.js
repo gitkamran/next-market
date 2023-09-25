@@ -43,11 +43,11 @@ const CategoriesSlider = ({ data }) => {
                         fullData.length < 1 ?
                             <h2>اطلاعات یافت نشد!</h2> :
                             <>
-                                {!isFirst && <button onClick={handlePrev} className={`z-20 absolute top-1/2 -translate-y-1/2 right-2`}>
+                                {!isFirst && <button onClick={handlePrev} className={`z-20 absolute top-1/2 -translate-y-1/2 right-0`}>
                                     <HiChevronRight className="text-rose-500/90 text-2xl md:text-3xl" />
                                 </button>}
 
-                                {!isLast && <button onClick={handleNext} className={`z-20 absolute top-1/2 -translate-y-1/2 left-2`}>
+                                {!isLast && <button onClick={handleNext} className={`z-20 absolute top-1/2 -translate-y-1/2 left-0`}>
                                     <HiChevronLeft className="text-rose-500/90 text-2xl md:text-3xl" />
                                 </button>}
                                 <Swiper

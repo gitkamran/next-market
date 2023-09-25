@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import SingleSlider from "../single-slider/SingleSlider";
 import { HiChevronLeft, HiChevronRight, HiOutlineMegaphone } from "react-icons/hi2";
 
-const Newest = ({ data }) => {
+const Newest = ({ data, setShowPopupProduct, setProductData, setShowError }) => {
     const [fullData, setFullData] = useState([-1])
     useEffect(() => {
         setFullData(data)
@@ -79,7 +79,12 @@ const Newest = ({ data }) => {
                                 >
                                     {fullData.map((d, i) => (
                                         <SwiperSlide key={i}>
-                                            <SingleSlider data={d} />
+                                            <SingleSlider
+                                                data={d}
+                                                setShowPopupProduct={setShowPopupProduct}
+                                                setProductData={setProductData}
+                                                setShowError={setShowError}
+                                            />
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>

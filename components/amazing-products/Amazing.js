@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import SingleSlider from "../single-slider/SingleSlider";
 import { HiChevronLeft, HiChevronRight, HiOutlineRocketLaunch } from "react-icons/hi2";
 
-const Amazing = ({ data }) => {
+const Amazing = ({ data, setShowPopupProduct, setProductData, setShowError }) => {
     const [fullData, setFullData] = useState([-1])
     useEffect(() => {
         setFullData(data)
@@ -31,6 +31,7 @@ const Amazing = ({ data }) => {
         })
     }
     const { isLast, isFirst } = slideBegOrNot;
+
     return (
         <section className="w-full mx-auto lg:max-w-screen-lg p-4 bg-white shadow-md rounded-md">
             <div className="flex items-center gap-2 p-4">
@@ -78,7 +79,12 @@ const Amazing = ({ data }) => {
                                 >
                                     {fullData.map((d, i) => (
                                         <SwiperSlide key={i}>
-                                            <SingleSlider data={d} />
+                                            <SingleSlider
+                                                data={d}
+                                                setShowPopupProduct={setShowPopupProduct}
+                                                setProductData={setProductData}
+                                                setShowError={setShowError}
+                                            />
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
