@@ -7,8 +7,8 @@ import { HiMinusSmall, HiPlusSmall } from "react-icons/hi2";
 
 const SingleSlider = ({ data, setShowPopupProduct, setProductData, setShowError }) => {
 
-    const { cartNumber, setCartNumber, countNumber, setCountNumber } = useAppContext();
-    // const [countNumber, setCountNumber] = useState(0);
+    const { cartNumber, setCartNumber } = useAppContext();
+    const [countNumber, setCountNumber] = useState(0);
 
     const showErrorHandler = () => {
         setShowError(true);
@@ -18,10 +18,10 @@ const SingleSlider = ({ data, setShowPopupProduct, setProductData, setShowError 
     }
 
     return (
-        <div className="w-full h-full rounded-md shadow-[0_0_5px_#00000030] bg-neutral-100 flex flex-col items-center gap-2 p-2">
+        <div className="relative w-full h-full rounded-md shadow-[0_0_5px_#00000030] bg-neutral-100 flex flex-col items-center gap-2 p-2">
             {
                 data.saleOff !== 0 &&
-                <div className="absolute top-5 left-1 bg-orange-500/90 rounded-full w-7 h-7 flex items-center justify-center">
+                <div className="absolute top-2 left-2 bg-orange-500/90 rounded-full w-7 h-7 flex items-center justify-center">
                     <h2 className="text-white text-sm">%{Math.round(data.saleOff)}</h2>
                 </div>
             }
