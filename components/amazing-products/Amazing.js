@@ -42,7 +42,17 @@ const Amazing = ({ data, setShowPopupProduct, setProductData, setShowError }) =>
                 {
                     fullData[0] === -1 ?
                         <div className="py-4">
-                            <div className="w-full h-[290px] rounded-md bg-neutral-400 animate-pulse">
+                            <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
+                                <div className="w-full h-[306px] rounded-md bg-neutral-400 animate-pulse">
+                                </div>
+                                <div className="w-full h-[306px] rounded-md bg-neutral-400 animate-pulse">
+                                </div>
+                                <div className="w-full h-[306px] rounded-md bg-neutral-400 animate-pulse">
+                                </div>
+                                <div className="w-full h-[306px] rounded-md bg-neutral-400 animate-pulse">
+                                </div>
+                                <div className="w-full h-[306px] rounded-md bg-neutral-400 animate-pulse">
+                                </div>
                             </div>
                         </div>
                         :

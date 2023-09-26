@@ -29,15 +29,17 @@ const SingleSlider = ({ data, setShowPopupProduct, setProductData, setShowError 
                 setShowPopupProduct(true);
                 setProductData(data);
             }} className="flex flex-col gap-4 h-full w-full">
-                <div className="w-full h-[150px] bg-white flex items-center justify-center rounded-md">
-                    <Image
-                        src={data.image}
-                        alt={data.name}
-                        width={97.5}
-                        height={150}
-                        priority
-                        className="w-auto h-auto bg-transparent"
-                    />
+                <div className="bg-white flex items-center justify-center rounded-md">
+                    <div className="w-auto h-auto">
+                        <Image
+                            src={data.image}
+                            alt={data.name}
+                            width={100}
+                            height={100}
+                            priority
+                            className="w-full h-full bg-cover"
+                        />
+                    </div>
                 </div>
                 <div className="flex items-center justify-center h-full">
                     <h2 className="text-center text-neutral-600 text-xs font-bold line-clamp-2">{data.name}</h2>
