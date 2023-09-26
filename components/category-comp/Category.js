@@ -5,16 +5,16 @@ import { HiMagnifyingGlass } from 'react-icons/hi2'
 import { HiOutlineEmojiSad } from 'react-icons/hi'
 import axios from 'axios'
 
-const Search = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
+const Category = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
 
     const [fullData, setFullData] = useState([-1])
-    const [search, setSearch] = useState(url.search ? url.search : "")
+    const [categoryId, setCategoryId] = useState(url.category ? url.category : "")
     const [page, setPage] = useState(1)
     const [paginate, setPaginate] = useState([])
 
 
     useEffect(() => {
-        axios.get(`https://api.qazvinmarket.com/api/v1/search?q=${search}&page=${page}`)
+        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${categoryId}&filter=0&page=${page}`)
             .then(d => {
                 setFullData(d.data.cargos)
                 setPaginate(d.data.paginate)
@@ -22,12 +22,11 @@ const Search = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
             .catch(e => {
                 console.log("error")
             })
-    }, [search, page])
+    }, [categoryId, page])
 
     useEffect(() => {
-        setSearch(url.search ? url.search : "")
-    }, [url.search])
-
+        setCategoryId(url.category ? url.category : "")
+    }, [url.category])
 
     useEffect(() => {
         window.scrollTo({
@@ -35,7 +34,7 @@ const Search = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
             left: 0,
             behavior: "instant"
         });
-    }, [search, page]);
+    }, [categoryId, page]);
 
 
     return (
@@ -81,4 +80,4 @@ const Search = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
     )
 }
 
-export default Search
+export default Category
