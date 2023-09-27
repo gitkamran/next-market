@@ -14,13 +14,32 @@ const PageComp = ({ data, url }) => {
     const [showPopupProduct, setShowPopupProduct] = useState(false)
     const [productData, setProductData] = useState("")
     const [showError, setShowError] = useState(false);
+    const [subMenuId, setSubMenuId] = useState("")
 
     return (
         <main className="flex flex-col gap-4 items-center w-full min-h-screen bg-neutral-200/50 py-4">
             <CategoriesSlider
                 data={data.dataMenu.menus}
                 url={url}
+                setSubMenuId={setSubMenuId}
             />
+            {
+                url.category &&
+                <div className='w-full mx-auto lg:max-w-screen-lg bg-white rounded-md shadow-[0_0_10px_#00000050] p-2'>
+                    {data.dataMenu.menus.map((d, i) => (
+                        <div key={i}>
+                            {d.id === +url.category &&
+                                <div className='flex items-center gap-2'>
+                                    <h2 onClick={() => setSubMenuId(d.id)} className={`${subMenuId === "" || subMenuId === d.id ? "bg-rose-500/90 text-white rounded-md" : ""} cursor-pointer text-sm p-1.5`}>همه</h2>
+                                    {d.subMenus.map((s, i) => (
+                                        <h2 key={i} className={`${s.id === subMenuId ? "bg-rose-500/90 text-white rounded-md" : ""} cursor-pointer text-sm p-1.5`} onClick={() => setSubMenuId(s.id)}>{s.name}</h2>
+                                    ))}
+                                </div>
+                            }
+                        </div>
+                    ))}
+                </div>
+            }
             {
                 url.search ?
                     <Search
@@ -36,6 +55,7 @@ const PageComp = ({ data, url }) => {
                             setShowPopupProduct={setShowPopupProduct}
                             setProductData={setProductData}
                             setShowError={setShowError}
+                            subMenuId={subMenuId}
                         />
                         :
                         <>
