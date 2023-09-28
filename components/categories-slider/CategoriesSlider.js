@@ -5,8 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
+import Category from "../category-comp/Category";
 
-const CategoriesSlider = ({ data, url }) => {
+const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setShowError }) => {
 
     const router = useRouter();
     const [fullData, setFullData] = useState([-1]);
@@ -39,17 +40,17 @@ const CategoriesSlider = ({ data, url }) => {
 
     return (
         <section className="w-full mx-auto lg:max-w-screen-lg p-4 bg-white shadow-md rounded-md">
-            <div className="px-10 relative">
-                {
-                    fullData[0] === -1 ?
-                        <div className="py-4">
-                            <div className="w-full h-[120px] xl:h-[140px] rounded-md bg-neutral-400 animate-pulse">
-                            </div>
+            {
+                fullData[0] === -1 ?
+                    <div className="py-4">
+                        <div className="w-full h-[120px] xl:h-[140px] rounded-md bg-neutral-400 animate-pulse">
                         </div>
-                        :
-                        fullData.length < 1 ?
-                            <h2>اطلاعات یافت نشد!</h2> :
-                            <>
+                    </div>
+                    :
+                    fullData.length < 1 ?
+                        <h2>اطلاعات یافت نشد!</h2> :
+                        <>
+                            <div className="relative px-10">
                                 {!isFirst && <button onClick={handlePrev} className={`z-20 absolute top-1/2 -translate-y-1/2 right-0`}>
                                     <HiChevronRight className="text-rose-500/90 text-2xl md:text-3xl" />
                                 </button>}
@@ -98,9 +99,18 @@ const CategoriesSlider = ({ data, url }) => {
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
-                            </>
-                }
-            </div>
+                            </div>
+                            {url.category &&
+                                <Category
+                                    url={url}
+                                    setShowPopupProduct={setShowPopupProduct}
+                                    setProductData={setProductData}
+                                    setShowError={setShowError}
+                                    data={fullData.map(d => d.subMenus)}
+                                />
+                            }
+                        </>
+            }
         </section>
     )
 }
