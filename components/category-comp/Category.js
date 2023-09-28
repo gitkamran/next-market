@@ -5,7 +5,7 @@ import { HiMagnifyingGlass } from 'react-icons/hi2'
 import { HiOutlineEmojiSad } from 'react-icons/hi'
 import axios from 'axios'
 
-const Category = ({ url, setShowPopupProduct, setProductData, setShowError, subMenuId }) => {
+const Category = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
 
     const [fullData, setFullData] = useState([-1])
     const [categoryId, setCategoryId] = useState(url.category ? url.category : "")
@@ -14,7 +14,7 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError, subM
 
 
     useEffect(() => {
-        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${subMenuId ? subMenuId : categoryId}&filter=0&page=${page}`)
+        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${categoryId}&filter=0&page=${page}`)
             .then(d => {
                 setFullData(d.data.cargos)
                 setPaginate(d.data.paginate)
@@ -22,12 +22,12 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError, subM
             .catch(e => {
                 console.log("error")
             })
-    }, [categoryId, page, subMenuId])
+    }, [categoryId, page])
 
     useEffect(() => {
         setCategoryId(url.category ? url.category : "")
         setPage(1)
-    }, [url.category, subMenuId])
+    }, [url.category])
 
     useEffect(() => {
         window.scrollTo({
@@ -35,7 +35,7 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError, subM
             left: 0,
             behavior: "instant"
         });
-    }, [categoryId, page, subMenuId]);
+    }, [categoryId, page]);
 
 
     return (

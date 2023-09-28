@@ -25,6 +25,7 @@ const Search = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
     }, [search, page])
 
     useEffect(() => {
+        setPage(1)
         setSearch(url.search ? url.search : "")
     }, [url.search])
 
