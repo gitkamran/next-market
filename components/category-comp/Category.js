@@ -6,16 +6,14 @@ import { HiOutlineEmojiSad } from 'react-icons/hi'
 import axios from 'axios'
 import SubMenuComp from '../sub-menu-comp/SubMenuComp'
 
-const Category = ({ url, setShowPopupProduct, setProductData, setShowError, data }) => {
+const Category = ({ url, setShowPopupProduct, setProductData, setShowError, data, setSubMenuId, subMenuId, setPage, page }) => {
 
     const [fullData, setFullData] = useState([-1])
     const [categoryId, setCategoryId] = useState(url.category ? url.category : "")
-    const [page, setPage] = useState(1)
     const [paginate, setPaginate] = useState([])
 
-
     useEffect(() => {
-        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${categoryId}&filter=0&page=${page}`)
+        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${subMenuId !== 0 ? subMenuId : categoryId}&filter=0&page=${page}`)
             .then(d => {
                 setFullData(d.data.cargos)
                 setPaginate(d.data.paginate)
@@ -23,12 +21,12 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError, data
             .catch(e => {
                 console.log("error")
             })
-    }, [categoryId, page])
+    }, [categoryId, page, subMenuId])
 
     useEffect(() => {
         setCategoryId(url.category ? url.category : "")
-        setPage(1)
     }, [url.category])
+
 
     useEffect(() => {
         window.scrollTo({
@@ -53,9 +51,19 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError, data
                 </div>
                 :
                 <div className='flex flex-col gap-4'>
-                    <SubMenuComp
-                        data={data.map(d => d.map(s => s.parent_id === +url.category))}
-                    />
+                    <div className='w-full mx-auto lg:max-w-screen-lg bg-white rounded-md shadow-[0_0_10px_#00000050] p-2'>
+                        {fullData[0] === -1 ?
+                            <div className="bg-neutral-200 animate-pulse w-1/2 h-6 rounded-md"></div> :
+                            fullData.lenght < 1 ?
+                                <div>
+                                    <h2>اطلاعات یافت نشد...</h2>
+                                </div> :
+                                <SubMenuComp
+                                    data={data.filter(s => s.parent_id === +url.category)}
+                                    setSubMenuId={setSubMenuId}
+                                />
+                        }
+                    </div>
                     <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
                         {fullData.map((d, i) => (
                             <SingleSlider

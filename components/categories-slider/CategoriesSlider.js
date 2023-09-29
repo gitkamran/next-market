@@ -13,6 +13,7 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
     const [fullData, setFullData] = useState([-1]);
     useEffect(() => {
         setFullData(data)
+        setPage(1)
     }, [data])
 
     const slideRef = useRef()
@@ -37,6 +38,14 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
     const shopCategory = (input) => {
         router.push(`/?category=${input}`)
     }
+
+    const [subMenu, setSubMenu] = useState([])
+    const [subMenuId, setSubMenuId] = useState(0)
+    const [page, setPage] = useState(1)
+
+    useEffect(() => {
+        setPage(1)
+    }, [subMenuId, subMenu])
 
     return (
         <section className="w-full mx-auto lg:max-w-screen-lg p-4 bg-white shadow-md rounded-md">
@@ -81,7 +90,14 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
                                 >
                                     {fullData.map((d, i) => (
                                         <SwiperSlide key={i}>
-                                            <div onClick={() => { shopCategory(d.id) }} className={`${+url.category === d.id ? "shadow-[0_0_15px_#F43F5E90]" : "shadow-[0_0_15px_#00000030]"} cursor-pointer w-full rounded-md flex flex-col items-center gap-2 px-1 py-2`}>
+                                            <div
+                                                onClick={() => {
+                                                    shopCategory(d.id);
+                                                    setSubMenu(d.subMenus);
+                                                    setSubMenuId(0);
+                                                    setPage(1)
+                                                }}
+                                                className={`${+url.category === d.id ? "shadow-[0_0_15px_#F43F5E90]" : "shadow-[0_0_15px_#00000030]"} cursor-pointer w-full rounded-md flex flex-col items-center gap-2 px-1 py-2`}>
                                                 <div className="w-14 h-14">
                                                     <Image
                                                         src={d.image}
@@ -106,7 +122,11 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
                                     setShowPopupProduct={setShowPopupProduct}
                                     setProductData={setProductData}
                                     setShowError={setShowError}
-                                    data={fullData.map(d => d.subMenus)}
+                                    data={subMenu}
+                                    setSubMenuId={setSubMenuId}
+                                    subMenuId={subMenuId}
+                                    setPage={setPage}
+                                    page={page}
                                 />
                             }
                         </>
