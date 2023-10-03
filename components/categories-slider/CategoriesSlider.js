@@ -6,7 +6,7 @@ import Image from "next/image";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
 
-const CategoriesSlider = ({ data, url }) => {
+const CategoriesSlider = ({ data, url, setSubMenuId }) => {
 
     const router = useRouter();
     const [fullData, setFullData] = useState([-1]);
@@ -81,6 +81,7 @@ const CategoriesSlider = ({ data, url }) => {
                                             <div
                                                 onClick={() => {
                                                     shopCategory(d.id);
+                                                    setSubMenuId("")
                                                 }}
                                                 className={`${+url.category === d.id ? "shadow-[0_0_15px_#F43F5E90]" : "shadow-[0_0_15px_#00000030]"} cursor-pointer w-full rounded-md flex flex-col items-center gap-2 px-1 py-2`}>
                                                 <div className="w-14 h-14">

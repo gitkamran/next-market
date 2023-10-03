@@ -5,16 +5,18 @@ import { HiMagnifyingGlass } from 'react-icons/hi2'
 import { HiOutlineEmojiSad } from 'react-icons/hi'
 import axios from 'axios'
 
-const Category = ({ url, setShowPopupProduct, setProductData, setShowError }) => {
+const Category = ({ url, setShowPopupProduct, setProductData, setShowError, subMenuId }) => {
 
     const [fullData, setFullData] = useState([-1])
     const [categoryId, setCategoryId] = useState(url.category ? url.category : "")
     const [paginate, setPaginate] = useState([])
     const [page, setPage] = useState(1)
+    const [filter, setFilter] = useState(0)
+    console.log(subMenuId)
 
 
     useEffect(() => {
-        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${categoryId}&filter=0&page=${page}`)
+        axios.get(`https://api.qazvinmarket.com/api/v1/cargo?parent_id=${subMenuId ? subMenuId : categoryId}&filter=${filter}&page=${page}`)
             .then(d => {
                 setFullData(d.data.cargos)
                 setPaginate(d.data.paginate)
@@ -22,10 +24,16 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError }) =>
             .catch(e => {
                 console.log("error")
             })
-    }, [categoryId, page])
+    }, [categoryId, page, filter, subMenuId])
+
+    useEffect(() => {
+        setPaginate([])
+        setPage(1)
+    }, [subMenuId])
 
     useEffect(() => {
         setCategoryId(url.category ? url.category : "")
+        setPaginate([])
         setPage(1)
     }, [url.category])
 
@@ -53,8 +61,26 @@ const Category = ({ url, setShowPopupProduct, setProductData, setShowError }) =>
                     </div>
                     :
                     <div className='flex flex-col gap-4'>
+                        <div className='flex items-center justify-start gap-4'>
+                            <h2 className='text-sm'>مرتب سازی بر اساس:</h2>
+                            <button onClick={() => {
+                                setFilter(0)
+                            }}
+                                className={`${filter === 0 && "text-rose-500/90"} text-sm`}
+                            >حروف الفبا</button>
+                            <button onClick={() => {
+                                setFilter(2)
+                            }}
+                                className={`${filter === 2 && "text-rose-500/90"} text-sm`}
+                            >گرانترین</button>
+                            <button onClick={() => {
+                                setFilter(1)
+                            }}
+                                className={`${filter === 1 && "text-rose-500/90"} text-sm`}
+                            >ارزانترین</button>
+                        </div>
                         <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4'>
-                            {fullData.map((d, i) => (
+                            {fullData.sort((a, b) => a.name - b.name).map((d, i) => (
                                 <SingleSlider
                                     key={i}
                                     data={d}
