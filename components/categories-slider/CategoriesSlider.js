@@ -5,15 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
-import Category from "../category-comp/Category";
 
-const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setShowError }) => {
+const CategoriesSlider = ({ data, url }) => {
 
     const router = useRouter();
     const [fullData, setFullData] = useState([-1]);
     useEffect(() => {
         setFullData(data)
-        setPage(1)
     }, [data])
 
     const slideRef = useRef()
@@ -38,15 +36,6 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
     const shopCategory = (input) => {
         router.push(`/?category=${input}`)
     }
-
-    const [subMenu, setSubMenu] = useState([])
-    const [subMenuId, setSubMenuId] = useState(0)
-    const [page, setPage] = useState(1)
-
-    useEffect(() => {
-        setPage(1)
-    }, [subMenuId, subMenu])
-
     return (
         <section className="w-full mx-auto lg:max-w-screen-lg p-4 bg-white shadow-md rounded-md">
             {
@@ -69,7 +58,6 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
                                 </button>}
                                 <Swiper
                                     spaceBetween={16}
-                                    // className="swiper"
                                     ref={slideRef}
                                     onSlideChange={onSlideChange}
                                     navigation={false}
@@ -93,9 +81,6 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
                                             <div
                                                 onClick={() => {
                                                     shopCategory(d.id);
-                                                    setSubMenu(d.subMenus);
-                                                    setSubMenuId(0);
-                                                    setPage(1)
                                                 }}
                                                 className={`${+url.category === d.id ? "shadow-[0_0_15px_#F43F5E90]" : "shadow-[0_0_15px_#00000030]"} cursor-pointer w-full rounded-md flex flex-col items-center gap-2 px-1 py-2`}>
                                                 <div className="w-14 h-14">
@@ -116,19 +101,7 @@ const CategoriesSlider = ({ data, url, setShowPopupProduct, setProductData, setS
                                     ))}
                                 </Swiper>
                             </div>
-                            {url.category &&
-                                <Category
-                                    url={url}
-                                    setShowPopupProduct={setShowPopupProduct}
-                                    setProductData={setProductData}
-                                    setShowError={setShowError}
-                                    data={subMenu}
-                                    setSubMenuId={setSubMenuId}
-                                    subMenuId={subMenuId}
-                                    setPage={setPage}
-                                    page={page}
-                                />
-                            }
+
                         </>
             }
         </section>

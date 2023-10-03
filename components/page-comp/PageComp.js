@@ -8,6 +8,7 @@ import PopupProduct from '../pop-up-product/PopupProduct'
 import { useState } from 'react'
 import "./custom.css"
 import Search from '../search-comp/Search'
+import Category from '../category-comp/Category'
 
 const PageComp = ({ data, url }) => {
     const [showPopupProduct, setShowPopupProduct] = useState(false)
@@ -18,44 +19,49 @@ const PageComp = ({ data, url }) => {
         <main className="flex flex-col gap-4 items-center w-full min-h-screen bg-neutral-200/50 py-4">
             <CategoriesSlider
                 data={data.dataMenu.menus}
-                setShowPopupProduct={setShowPopupProduct}
-                setProductData={setProductData}
-                setShowError={setShowError}
                 url={url}
             />
+            {url.category &&
+                <Category
+                    url={url}
+                    setShowPopupProduct={setShowPopupProduct}
+                    setProductData={setProductData}
+                    setShowError={setShowError}
+                />
+            }
             {
-                url.search && !url.category ?
-                    <Search
-                        url={url}
+                url.search &&
+                <Search
+                    setShowPopupProduct={setShowPopupProduct}
+                    setProductData={setProductData}
+                    setShowError={setShowError}
+                    subMenuId={subMenuId}
+                />
+            }
+            {!url.category && !url.search &&
+                <>
+                    <Amazing
+                        data={data.dataIndex.data.amazing}
                         setShowPopupProduct={setShowPopupProduct}
                         setProductData={setProductData}
                         setShowError={setShowError}
                     />
-                    :
-                    !url.category && !url.search &&
-                    <>
-                        <Amazing
-                            data={data.dataIndex.data.amazing}
-                            setShowPopupProduct={setShowPopupProduct}
-                            setProductData={setProductData}
-                            setShowError={setShowError}
-                        />
 
-                        <Banners
-                            data={data.dataIndex.data.advertises}
-                        />
+                    <Banners
+                        data={data.dataIndex.data.advertises}
+                    />
 
-                        <Newest
-                            data={data.dataIndex.data.newest}
-                            setShowPopupProduct={setShowPopupProduct}
-                            setProductData={setProductData}
-                            setShowError={setShowError}
-                        />
+                    <Newest
+                        data={data.dataIndex.data.newest}
+                        setShowPopupProduct={setShowPopupProduct}
+                        setProductData={setProductData}
+                        setShowError={setShowError}
+                    />
 
-                        <CommentsSlider
-                            data={data.dataComment.comments}
-                        />
-                    </>
+                    <CommentsSlider
+                        data={data.dataComment.comments}
+                    />
+                </>
             }
             {
                 showPopupProduct &&
