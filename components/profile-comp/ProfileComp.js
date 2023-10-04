@@ -24,10 +24,11 @@ const ProfileComp = () => {
     }
 
     const [details, setDetails] = useState(<UserInfo />)
+    const [link, setLink] = useState("اطلاعات کاربری")
 
     return (
         <main className="flex flex-col gap-4 items-center w-full min-h-screen bg-neutral-200/50 py-4">
-            <BreadCrumb />
+            <BreadCrumb link={link} setLink={setLink} setDetails={setDetails} />
             <div className='mx-auto w-full lg:max-w-screen-lg'>
                 <div className='flex gap-4'>
                     <div className='basis-1/3'>
@@ -51,21 +52,32 @@ const ProfileComp = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-1'>
-                                <div onClick={() => setDetails(<UserInfo />)} className='cursor-pointer flex items-center justify-between p-2 rounded-md hover:shadow-[0_0_5px_#00000030] duration-300'>
+                                <div onClick={() => {
+                                    setDetails(<UserInfo />)
+                                    setLink("اطلاعات کاربری")
+                                }}
+                                    className='cursor-pointer flex items-center justify-between p-2 rounded-md hover:shadow-[0_0_5px_#00000030] duration-300'>
                                     <div className='flex items-center gap-1'>
                                         <HiOutlineUserCircle className='text-2xl text-rose-500/90' />
                                         <span>اطلاعات کاربری</span>
                                     </div>
                                     <HiChevronLeft className='text-2xl text-neutral-500' />
                                 </div>
-                                <div onClick={() => setDetails(<Addresses />)} className='cursor-pointer flex items-center justify-between p-2 rounded-md hover:shadow-[0_0_5px_#00000030] duration-300'>
+                                <div onClick={() => {
+                                    setDetails(<Addresses />)
+                                    setLink("آدرس ها")
+                                }}
+                                    className='cursor-pointer flex items-center justify-between p-2 rounded-md hover:shadow-[0_0_5px_#00000030] duration-300'>
                                     <div className='flex items-center gap-1'>
                                         <HiOutlineMapPin className='text-2xl text-rose-500/90' />
                                         <span>آدرس ها</span>
                                     </div>
                                     <HiChevronLeft className='text-2xl text-neutral-500' />
                                 </div>
-                                <div onClick={() => setDetails(<Favorites />)} className='cursor-pointer flex items-center justify-between p-2 rounded-md hover:shadow-[0_0_5px_#00000030] duration-300'>
+                                <div onClick={() => {
+                                    setDetails(<Favorites />)
+                                    setLink("علاقه مندی ها")
+                                }} className='cursor-pointer flex items-center justify-between p-2 rounded-md hover:shadow-[0_0_5px_#00000030] duration-300'>
                                     <div className='flex items-center gap-1'>
                                         <HiOutlineHeart className='text-2xl text-rose-500/90' />
                                         <span>علاقه مندی ها</span>
