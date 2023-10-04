@@ -57,6 +57,7 @@ const PageComp = ({ data, url }) => {
                     setProductData={setProductData}
                     setShowError={setShowError}
                     subMenuId={subMenuId}
+                    url={url}
                 />
             }
             {!url.category && !url.search &&
